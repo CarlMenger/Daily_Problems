@@ -1,0 +1,16 @@
+"""Given an array of integers, find the first missing positive integer in linear time and constant space. 
+In other words, find the lowest positive integer that does not exist in the array. 
+The array can contain duplicates and negative numbers as well. For example, the input [3, 4, -1, 1] should give 2. 
+The input [1, 2, 0] should give 3. You can modify the input array in-place."""
+
+
+def d19_12_26(input_list):
+    output_list = [element for element in input_list if element > 0]
+    output_list = sorted(list(dict.fromkeys(output_list)))  # removes duplicates list -> dict -> list
+    for i in range(len(output_list)):
+        if output_list[i+1] - output_list[i] != 1:
+            return output_list[i] + 1
+
+
+input_list = [-5, -6, 3, -1, 10, 5, 8, 4, 7, 3, 5, 9, 6, 4, 52, 8, 4, 12, 3, 6, 3, 36, 5]
+print(d19_12_26(input_list))
